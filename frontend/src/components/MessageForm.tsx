@@ -2,7 +2,7 @@ import { useState, useContext } from "react"
 import { SocketContext } from "../providers/SocketProvider"
 
 export const MessageForm = () => {
-    const ws = useContext(SocketContext)
+    const socket = useContext(SocketContext)
     const [ text, setText ] = useState<string>("")
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -11,8 +11,8 @@ export const MessageForm = () => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if (ws) {
-            ws.send(text);
+        if (socket) {
+            socket.send(text);
         }
         setText("");
     };
